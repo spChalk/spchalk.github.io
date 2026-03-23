@@ -590,6 +590,36 @@
       .contact-links {
         gap: 16px;
       }
+
+      .back-to-top {
+        display: none;
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+        background: var(--nav-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+        color: var(--text);
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 10;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.3s;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .back-to-top.visible {
+        display: flex;
+        opacity: 1;
+        pointer-events: auto;
+      }
     }
 
     /* ── Theme Toggle Slider ── */
@@ -625,6 +655,10 @@
       border-radius: 50%;
       background: var(--bg);
       transition: transform 0.3s;
+    }
+
+    [data-theme="dark"] .back-to-top {
+      box-shadow: 0 2px 12px rgba(255, 255, 255, 0.15);
     }
 
     [data-theme="dark"] .theme-slider {
@@ -887,6 +921,8 @@
     </div>
   </section>
 
+  <button class="back-to-top" aria-label="Back to top">🔝</button>
+
   <footer>
     &copy; 2026 Spiros Chalkias
   </footer>
@@ -906,6 +942,19 @@
         toggle.classList.remove('active');
         links.classList.remove('open');
       });
+    });
+
+    // Back to top button (mobile only)
+    const backToTop = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth <= 600 && window.scrollY > 400) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     // Theme toggle
@@ -1011,11 +1060,15 @@
     // Debounced resize handler (consolidates breakpoint rebuild + re-pack)
     let bubblesAnimated = false;
     let wasMobile = window.innerWidth <= 600;
+    let lastWidth = window.innerWidth;
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
-        const isMobile = window.innerWidth <= 600;
+        const newWidth = window.innerWidth;
+        if (newWidth === lastWidth) return;
+        lastWidth = newWidth;
+        const isMobile = newWidth <= 600;
         if (isMobile !== wasMobile) {
           wasMobile = isMobile;
           buildBubbles();

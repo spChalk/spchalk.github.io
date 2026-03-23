@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spiros Chalkias</title>
+  <meta name="description" content="Spiros Chalkias — AI/ML Engineer building production AI agents. Previously at EPFL NLP Lab and Nokia.">
+  <meta property="og:title" content="Spiros Chalkias — AI/ML Engineer">
+  <meta property="og:description" content="Building production AI agents for enterprise clients. Previously research fellow at EPFL and MLOps engineer at Nokia.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23191919'/><text x='50' y='56' font-size='52' font-weight='700' font-family='DM Sans,sans-serif' fill='white' text-anchor='middle' dominant-baseline='middle'>SC</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fragment+Mono&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #ffffff;
+      --bg-alt: #fafafa;
+      --text: #000000;
+      --text-secondary: #666666;
+      --accent: #0099ff;
+      --accent-hover: #007acc;
+      --border: #f0f0f0;
+      --max-width: 1000px;
+      --nav-bg: rgba(255, 255, 255, 0.55);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0a0a0a;
+      --bg-alt: #141414;
+      --text: #f0f0f0;
+      --text-secondary: #999999;
+      --accent: #0099ff;
+      --accent-hover: #33adff;
+      --border: #222222;
+      --nav-bg: rgba(10, 10, 10, 0.55);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-logo {
+      display: inline-flex;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* ── Sections ── */
+    section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding-top: 160px;
+      padding-bottom: 80px;
+    }
+
+    .hero > .fade-in {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-portrait-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .hero-portrait-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 153, 255, 0.08) 0%, transparent 70%);
+      z-index: -1;
+    }
+
+    .hero-portrait {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      transition: transform 0.4s ease;
+    }
+
+    .hero-portrait:hover {
+      transform: scale(1.03);
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 500;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: -0.5px;
+      margin-bottom: 20px;
+    }
+
+    .typed-cursor {
+      display: inline-block;
+      width: 2px;
+      margin-left: 2px;
+      background: var(--accent);
+      animation: blink 0.7s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .hero-links {
+      margin-top: 28px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .icon-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, opacity 0.2s;
+      opacity: 0.85;
+    }
+
+    .icon-link:hover {
+      transform: scale(1.15);
+      opacity: 1;
+    }
+
+    .icon-link svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    /* ── About / Timeline ── */
+    .about {
+      border-top: 1px solid var(--border);
+      padding-top: 40px;
+      padding-bottom: 80px;
+    }
+
+    .about > .section-heading {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 32px;
+    }
+
+    .timeline {
+      --tl-pad: 40px;
+      position: relative;
+      padding-left: var(--tl-pad);
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--border));
+    }
+
+    .tl-item {
+      position: relative;
+      padding-bottom: 48px;
+    }
+
+    .tl-item:last-child {
+      padding-bottom: 0;
+    }
+
+    /* Dot on the line — always centered on the vertical rule */
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: calc(-1 * var(--tl-pad) - 6.5px);
+      top: 6px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      z-index: 1;
+      transition: background 0.3s;
+    }
+
+    .tl-item.visible::before {
+      background: var(--accent);
+      transform: scale(1.15);
+    }
+
+    .tl-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .tl-logo {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    .tl-header-text {
+      flex: 1;
+    }
+
+    .tl-date {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .tl-title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.3px;
+      margin-bottom: 4px;
+    }
+
+    .tl-subtitle {
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .tl-body {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 600px;
+    }
+
+    .tl-body a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color 0.2s;
+    }
+
+    .tl-body a:hover {
+      color: var(--accent-hover);
+    }
+
+    .tl-list {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 600px;
+      margin: 0 0 0 18px;
+      padding: 0;
+      list-style: disc;
+    }
+    .tl-list li {
+      margin-bottom: 4px;
+    }
+
+    .tl-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tl-tag {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 11px;
+      color: var(--text-secondary);
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 20px;
+      transition: color 0.25s, border-color 0.25s, background 0.25s, transform 0.25s;
+      cursor: default;
+    }
+
+    .tl-tag:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(0, 153, 255, 0.08);
+      transform: scale(1.06);
+    }
+
+    /* Timeline fade-in from left */
+    .tl-item {
+      opacity: 0;
+      transform: translateX(-16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .tl-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ── Skills Bubbles ── */
+    .skills {
+      padding-top: 20px;
+      padding-bottom: 80px;
+    }
+
+    .skills > .section-heading {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    .bubble-cloud {
+      position: relative;
+      width: 100%;
+      max-width: 700px;
+      height: 520px;
+      margin: 0 auto;
+    }
+
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      color: #fff;
+      cursor: default;
+      user-select: none;
+      transition: transform 0.3s ease;
+      will-change: transform;
+    }
+
+    .bubble:hover {
+      transform: scale(1.1) !important;
+      z-index: 10;
+    }
+
+    .bubble span {
+      pointer-events: none;
+      line-height: 1.2;
+    }
+
+    @media (max-width: 600px) {
+      .bubble-cloud {
+        height: 440px;
+        max-width: 100%;
+      }
+    }
+
+    /* ── Contact ── */
+    .contact {
+      padding-top: 40px;
+      padding-bottom: 100px;
+    }
+
+    .contact-inner {
+      border-top: 1px solid var(--border);
+      padding-top: 60px;
+      text-align: center;
+    }
+
+    .contact-inner h2 {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+
+    .contact-inner p {
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      align-items: center;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-family: 'Fragment Mono', monospace;
+    }
+
+    /* ── Mobile Nav Toggle ── */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      position: relative;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--text);
+      position: absolute;
+      left: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .nav-toggle span:nth-child(1) { top: 7px; }
+    .nav-toggle span:nth-child(2) { top: 12px; }
+    .nav-toggle span:nth-child(3) { top: 17px; }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: translateY(5px) rotate(45deg);
+    }
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav-toggle.active span:nth-child(3) {
+      transform: translateY(-5px) rotate(-45deg);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 810px) {
+      .hero > .fade-in {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 40px;
+      }
+
+      .hero-portrait {
+        width: 180px;
+        height: 180px;
+      }
+
+      .hero-links {
+        justify-content: center;
+      }
+
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .timeline {
+        --tl-pad: 32px;
+      }
+
+      .hero {
+        padding-top: 128px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--nav-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        flex-direction: column;
+        padding: 24px;
+        gap: 20px;
+        border-bottom: 1px solid var(--border);
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.3s, opacity 0.3s;
+      }
+
+      .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .contact-links {
+        gap: 16px;
+      }
+    }
+
+    /* ── Theme Toggle Slider ── */
+    .theme-switch {
+      position: relative;
+      width: 60px;
+      height: 32px;
+      flex-shrink: 0;
+    }
+
+    .theme-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .theme-slider {
+      position: absolute;
+      inset: 0;
+      cursor: pointer;
+      background: var(--border);
+      border-radius: 32px;
+      transition: background 0.3s;
+    }
+
+    .theme-slider::before {
+      content: '';
+      position: absolute;
+      left: 3px;
+      top: 3px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--bg);
+      transition: transform 0.3s;
+    }
+
+    [data-theme="dark"] .theme-slider {
+      background: var(--accent);
+    }
+
+    [data-theme="dark"] .theme-slider::before {
+      transform: translateX(28px);
+    }
+
+    .theme-switch svg {
+      position: absolute;
+      top: 7px;
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .theme-switch .icon-sun {
+      left: 6px;
+      color: #f5a623;
+    }
+
+    .theme-switch .icon-moon {
+      right: 6px;
+      color: var(--text-secondary);
+    }
+
+    [data-theme="dark"] .theme-switch .icon-sun {
+      color: var(--text-secondary);
+    }
+
+    [data-theme="dark"] .theme-switch .icon-moon {
+      color: #c4b5fd;
+    }
+
+    /* GitHub icon color flip in dark mode */
+    [data-theme="dark"] .github-icon { fill: #f0f0f0; }
+
+    /* Nav logo dark mode */
+    [data-theme="dark"] .nav-logo svg rect { fill: #f0f0f0; }
+    [data-theme="dark"] .nav-logo svg text { fill: #0a0a0a; }
+
+    /* ── Fade-in animation ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Home"><svg width="28" height="28" viewBox="0 0 100 100"><rect width="100" height="100" rx="12" fill="#191919"/><text x="50" y="56" font-size="52" font-weight="700" font-family="DM Sans,sans-serif" fill="white" text-anchor="middle" dominant-baseline="middle">SC</text></svg></a>
+      <div class="nav-right">
+        <label class="theme-switch" aria-label="Toggle dark mode">
+          <input type="checkbox" id="themeCheck">
+          <span class="theme-slider"></span>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </label>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Stack</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="fade-in">
+      <div class="hero-text">
+        <h1>Spiros Chalkias</h1>
+        <h2 class="hero-subtitle">AI/ML Engineer</h2>
+        <p>
+          <span id="typed"></span><span class="typed-cursor">&nbsp;</span>
+        </p>
+        <div class="hero-links">
+          <a href="https://linkedin.com/in/spChalk" target="_blank" rel="noopener" class="icon-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://github.com/spChalk" target="_blank" rel="noopener" class="icon-link" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" class="github-icon" fill="#181717"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <a href="mailto:sp.chalkias@gmail.com" class="icon-link" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="#EA4335"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero-portrait-wrap">
+        <img src="portrait.png" alt="Portrait" class="hero-portrait">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- About / Timeline -->
+  <section class="about" id="about">
+    <h2 class="section-heading fade-in">My journey so far</h2>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-header">
+          <img src="assets/moveo-logo.avif" alt="Moveo.AI" class="tl-logo">
+          <div class="tl-header-text">
+            <span class="tl-date">2024 — Present</span>
+            <h3 class="tl-title">AI/ML Engineer</h3>
+          </div>
+        </div>
+        <p class="tl-subtitle">Moveo.AI • Athens, Greece</p>
+        <p class="tl-body">
+          Building production AI agents for enterprise clients in fintech, insurance,
+          and gaming. Focused on performance, cost optimization, and building
+          trustworthy agents — bringing the latest research into production as fast
+          as possible.
+        </p>
+        <div class="tl-tags">
+          <span class="tl-tag">Product</span>
+          <span class="tl-tag">Agentic Pipeline</span>
+          <span class="tl-tag">Proprietary LLMs</span>
+          <span class="tl-tag">Context Engineering</span>
+          <span class="tl-tag">RAG</span>
+          <span class="tl-tag">Voice</span>
+          <span class="tl-tag">MCP</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-header">
+          <img src="assets/logo-epfl.png" alt="EPFL" class="tl-logo">
+          <div class="tl-header-text">
+            <span class="tl-date">2023 — 2024</span>
+            <h3 class="tl-title">Research Fellow</h3>
+          </div>
+        </div>
+        <p class="tl-subtitle">EPFL — NLP Lab • Lausanne, Switzerland</p>
+        <p class="tl-body">
+          Researched commonsense knowledge representation and reasoning for NLG models under Prof. Antoine Bosselut.
+          Designed an adversarial benchmark to stress-test how well evaluation
+          metrics capture reasoning, and found that all 30+ SoTA metrics — from simple token-overlap ones like BLEU
+          to model-based ones like G-EVAL — reward surface fluency over actual
+          reasoning coherence.
+        </p>
+        <div class="tl-tags">
+          <span class="tl-tag">Research</span>
+          <span class="tl-tag">NLG</span>
+          <span class="tl-tag">LLM Evaluation</span>
+          <span class="tl-tag">Adversarial NLP</span>
+          <span class="tl-tag">Commonsense Reasoning</span>
+          <span class="tl-tag">Benchmarking</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-header">
+          <img src="assets/Nokia-Logo.png" alt="Nokia" class="tl-logo">
+          <div class="tl-header-text">
+            <span class="tl-date">2022 — 2023</span>
+            <h3 class="tl-title">MLOps Engineer</h3>
+          </div>
+        </div>
+        <p class="tl-subtitle">Nokia • Athens, Greece</p>
+        <p class="tl-body">
+          Built an internal NLP topic modeling tool to automate labeling of system
+          logs and replace manual analysis — designed to help engineers identify
+          patterns and root causes across large volumes of diagnostic data.
+        </p>
+        <div class="tl-tags">
+          <span class="tl-tag">Knowledge Discovery</span>
+          <span class="tl-tag">System Diagnostics</span>
+          <span class="tl-tag">Correlation/Event Analysis</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-header">
+          <img src="assets/Nokia-Logo.png" alt="Nokia" class="tl-logo">
+          <div class="tl-header-text">
+            <span class="tl-date">2021 — 2022</span>
+            <h3 class="tl-title">Software Engineer</h3>
+          </div>
+        </div>
+        <p class="tl-subtitle">Nokia • Athens, Greece</p>
+        <p class="tl-body">
+          Developed 5G Core cloud-native software.
+        </p>
+        <div class="tl-tags">
+          <span class="tl-tag">5G Core</span>
+          <span class="tl-tag">Cloud-Native Systems</span>
+          <span class="tl-tag">Agile</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-header">
+          <img src="assets/LOGO_UOA.png" alt="NKUA" class="tl-logo">
+          <div class="tl-header-text">
+            <span class="tl-date">2018 — 2023</span>
+            <h3 class="tl-title">B.Sc. in Informatics & Telecommunications</h3>
+          </div>
+        </div>
+        <p class="tl-subtitle">National & Kapodistrian University of Athens</p>
+        <div class="tl-body">
+          <strong>Major:</strong> Computer Science<br>
+          <strong>Minor:</strong> Computer Engineering & Telecommunications<br>
+          <strong>Specialization:</strong> Data & Knowledge Management<br>
+          <strong>Thesis:</strong> <a href="https://pergamos.lib.uoa.gr/en/item/uoadl:3362434" target="_blank">"An Introduction to Randomizing Deep Polynomial NNs"</a><br>
+          <strong>Supervisor:</strong> Prof. Yannis Panagakis<br>
+          <strong>Voluntary Teaching:</strong> "Introduction to Programming" & "Data Structures" courses
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">Computer Science</span>
+          <span class="tl-tag">Telecom</span>
+          <span class="tl-tag">Deep Learning</span>
+          <span class="tl-tag">Data & Knowledge Management</span>
+          <span class="tl-tag">Teaching</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Skills Bubbles -->
+  <section class="skills" id="skills">
+    <h2 class="section-heading fade-in">Stack</h2>
+    <div class="bubble-cloud fade-in" id="bubbleCloud"></div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="contact-inner fade-in">
+      <h2>Get in touch</h2>
+      <p>Always happy to connect — drop me a line.</p>
+      <div class="contact-links">
+          <a href="https://linkedin.com/in/spChalk" target="_blank" rel="noopener" class="icon-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://github.com/spChalk" target="_blank" rel="noopener" class="icon-link" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" class="github-icon" fill="#181717"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <a href="mailto:sp.chalkias@gmail.com" class="icon-link" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="#EA4335"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+          </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Spiros Chalkias
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('active');
+      links.classList.toggle('open');
+    });
+
+    // Close mobile nav on link click
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        toggle.classList.remove('active');
+        links.classList.remove('open');
+      });
+    });
+
+    // Theme toggle
+    const themeCheck = document.getElementById('themeCheck');
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeCheck.checked = true;
+    }
+    themeCheck.addEventListener('change', () => {
+      const next = themeCheck.checked ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.tl-item').forEach(el => observer.observe(el));
+
+    // ── Bubble Cloud ──
+    const skills = [
+      { label: 'Python',       size: 1.0  },
+      { label: 'LLMs',         size: 1.0  },
+      { label: 'NLP',          size: 1.0  },
+      { label: 'RAG',          size: 1.0  },
+      { label: 'MCP',          size: 1.0  },
+      { label: 'LoRA',         size: 1.0  },
+      { label: 'PyTorch',      size: 0.78 },
+      { label: 'Transformers', size: 0.78 },
+      { label: 'W&B',          size: 0.78 },
+      { label: 'PostgreSQL',   size: 0.78 },
+      { label: 'CI/CD',        size: 0.78 },
+      { label: 'LiteLLM',     size: 0.78 },
+      { label: 'Fine-tuning',  size: 0.58 },
+      { label: 'Docker',       size: 0.58 },
+      { label: 'Kubernetes',   size: 0.58 },
+      { label: 'DPO',          size: 0.58 },
+      { label: 'Terraform',    size: 0.58 },
+      { label: 'Redis',        size: 0.58 },
+      { label: 'C++',          size: 0.58 },
+      { label: 'C',            size: 0.58 },
+      { label: 'vLLM',         size: 0.40 },
+      { label: 'GCP',          size: 0.40 },
+      { label: 'Azure',        size: 0.40 },
+    ];
+
+    // Color palette — blue gradient based on size
+    function bubbleColor(size) {
+      const colors = [
+        { min: 0.85, bg: '#0077cc', shadow: 'rgba(0,119,204,0.35)' },
+        { min: 0.7,  bg: '#0099ff', shadow: 'rgba(0,153,255,0.3)' },
+        { min: 0.55, bg: '#33adff', shadow: 'rgba(51,173,255,0.25)' },
+        { min: 0,    bg: '#66c2ff', shadow: 'rgba(102,194,255,0.2)' },
+      ];
+      return colors.find(c => size >= c.min) || colors[colors.length - 1];
+    }
+
+    const cloud = document.getElementById('bubbleCloud');
+    let bubbles = [];
+
+    function buildBubbles() {
+      const isMobile = window.innerWidth <= 600;
+      const minR = isMobile ? 20 : 28, maxR = isMobile ? 44 : 62;
+
+      cloud.innerHTML = '';
+      bubbles = [];
+
+      skills.forEach(skill => {
+        const r = minR + (maxR - minR) * skill.size;
+        const d = r * 2;
+        const { bg, shadow } = bubbleColor(skill.size);
+        const fontSize = Math.max(10, Math.round(r * 0.3));
+
+        const el = document.createElement('div');
+        el.className = 'bubble';
+        el.style.width = d + 'px';
+        el.style.height = d + 'px';
+        el.style.background = bg;
+        el.style.boxShadow = '0 4px 20px ' + shadow;
+        el.style.fontSize = fontSize + 'px';
+        el.innerHTML = '<span>' + skill.label + '</span>';
+        cloud.appendChild(el);
+
+        bubbles.push({
+          el,
+          r,
+          x: 0,
+          y: 0,
+          vx: (Math.random() - 0.5) * 2,
+          vy: (Math.random() - 0.5) * 2,
+        });
+      });
+    }
+
+    // Debounced resize handler (consolidates breakpoint rebuild + re-pack)
+    let bubblesAnimated = false;
+    let wasMobile = window.innerWidth <= 600;
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const isMobile = window.innerWidth <= 600;
+        if (isMobile !== wasMobile) {
+          wasMobile = isMobile;
+          buildBubbles();
+        }
+        if (bubblesAnimated) packBubbles();
+      }, 150);
+    });
+
+    function packBubbles() {
+      const W = cloud.offsetWidth;
+      const H = cloud.offsetHeight;
+      const centerX = W / 2;
+      const centerY = H / 2;
+
+      // Init positions in a rough cluster
+      bubbles.forEach(b => {
+        b.x = centerX + (Math.random() - 0.5) * W * 0.3;
+        b.y = centerY + (Math.random() - 0.5) * H * 0.3;
+      });
+
+      // Run physics
+      for (let iter = 0; iter < 300; iter++) {
+        // Gravity toward center
+        bubbles.forEach(b => {
+          b.vx += (centerX - b.x) * 0.002;
+          b.vy += (centerY - b.y) * 0.002;
+        });
+
+        // Collision separation
+        for (let i = 0; i < bubbles.length; i++) {
+          for (let j = i + 1; j < bubbles.length; j++) {
+            const a = bubbles[i], b = bubbles[j];
+            const dx = b.x - a.x, dy = b.y - a.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const minDist = a.r + b.r + 4;
+            if (dist < minDist && dist > 0) {
+              const force = (minDist - dist) / dist * 0.3;
+              const fx = dx * force, fy = dy * force;
+              a.vx -= fx; a.vy -= fy;
+              b.vx += fx; b.vy += fy;
+            }
+          }
+        }
+
+        // Apply velocity with damping
+        bubbles.forEach(b => {
+          b.x += b.vx;
+          b.y += b.vy;
+          b.vx *= 0.85;
+          b.vy *= 0.85;
+
+          // Keep in bounds
+          if (b.x - b.r < 0) { b.x = b.r; b.vx *= -0.5; }
+          if (b.x + b.r > W) { b.x = W - b.r; b.vx *= -0.5; }
+          if (b.y - b.r < 0) { b.y = b.r; b.vy *= -0.5; }
+          if (b.y + b.r > H) { b.y = H - b.r; b.vy *= -0.5; }
+        });
+      }
+
+      // Position elements
+      bubbles.forEach(b => {
+        b.el.style.left = (b.x - b.r) + 'px';
+        b.el.style.top = (b.y - b.r) + 'px';
+        b.el.style.opacity = '1';
+      });
+    }
+
+    // Build initial bubbles
+    buildBubbles();
+
+    // Animate in on scroll
+    const bubbleObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !bubblesAnimated) {
+          bubblesAnimated = true;
+          packBubbles();
+          bubbles.forEach((b, i) => {
+            setTimeout(() => {
+              b.el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+              b.el.style.opacity = '1';
+              b.el.style.transform = 'scale(1)';
+            }, i * 40);
+          });
+        }
+      });
+    }, { threshold: 0.2 });
+
+    bubbleObserver.observe(cloud);
+
+    // ── Typing Effect ──
+    const typedEl = document.getElementById('typed');
+    const phrases = [
+      'I ship AI agents to production — then babysit them for a living.',
+      'Building TARS, but with more sarcasm... Working on it.',
+      'Writing code that writes code... Yes, it\'s recursive.',
+      'I make LLMs behave... Mostly.',
+      'Building agents that actually work on Monday morning.',
+    ];
+    let phraseIdx = 0;
+    let charIdx = 0;
+    let deleting = false;
+
+    function typeStep() {
+      const current = phrases[phraseIdx];
+
+      if (!deleting) {
+        typedEl.textContent = current.slice(0, charIdx + 1);
+        charIdx++;
+        if (charIdx === current.length) {
+          deleting = true;
+          setTimeout(typeStep, 2000);
+          return;
+        }
+        setTimeout(typeStep, 40);
+      } else {
+        typedEl.textContent = current.slice(0, charIdx - 1);
+        charIdx--;
+        if (charIdx === 0) {
+          deleting = false;
+          phraseIdx = (phraseIdx + 1) % phrases.length;
+          setTimeout(typeStep, 300);
+          return;
+        }
+        setTimeout(typeStep, 10);
+      }
+    }
+
+    typeStep();
+  </script>
+</body>
+</html>

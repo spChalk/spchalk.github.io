@@ -2,4 +2,4 @@
 
 My personal website.
 
-> **Warning:** This site is 100% vibe coded.
+⚠️ **Warning:** This site is 100% vibe coded 🪄
